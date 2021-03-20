@@ -1,0 +1,1216 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/KUDIFaucet.sol": {
+      "lastModificationDate": 1615190592467,
+      "contentHash": "bbe7051b0af3d5cdf0c3f416e4ff0307",
+      "sourceName": "contracts/KUDIFaucet.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [],
+      "artifacts": []
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/node_modules/@openzeppelin/contracts/token/ERC777/ERC777.sol": {
+      "lastModificationDate": 1615284913700,
+      "contentHash": "9d33dcd68c2a4f769f3dedeac0cf846a",
+      "sourceName": "@openzeppelin/contracts/token/ERC777/ERC777.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../utils/Context.sol",
+        "./IERC777.sol",
+        "./IERC777Recipient.sol",
+        "./IERC777Sender.sol",
+        "../../token/ERC20/IERC20.sol",
+        "../../math/SafeMath.sol",
+        "../../utils/Address.sol",
+        "../../introspection/IERC1820Registry.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "ERC777"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/node_modules/@openzeppelin/contracts/access/AccessControl.sol": {
+      "lastModificationDate": 1615284913692,
+      "contentHash": "54eb0b53c109558e8312811342e95bf0",
+      "sourceName": "@openzeppelin/contracts/access/AccessControl.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../utils/EnumerableSet.sol",
+        "../utils/Address.sol",
+        "../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "AccessControl"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
+      "lastModificationDate": 1615284913706,
+      "contentHash": "6748815a5b45c4aeeda56819f41190e0",
+      "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "Ownable"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/node_modules/@openzeppelin/contracts/math/SafeMath.sol": {
+      "lastModificationDate": 1615284913709,
+      "contentHash": "e03e12206057e809eb76c5f681170c32",
+      "sourceName": "@openzeppelin/contracts/math/SafeMath.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "SafeMath"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/node_modules/@openzeppelin/contracts/GSN/Context.sol": {
+      "lastModificationDate": 1608749040649,
+      "contentHash": "2adbd82f6d055a4751566d4671512b03",
+      "sourceName": "@openzeppelin/contracts/GSN/Context.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/node_modules/@openzeppelin/contracts/token/ERC777/IERC777.sol": {
+      "lastModificationDate": 1608749040663,
+      "contentHash": "5833aafefffbdbdb5f5ee567a3f51b86",
+      "sourceName": "@openzeppelin/contracts/token/ERC777/IERC777.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC777"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/node_modules/@openzeppelin/contracts/token/ERC777/IERC777Recipient.sol": {
+      "lastModificationDate": 1608749040663,
+      "contentHash": "c611b2349e7afbb03e4fd314878861e0",
+      "sourceName": "@openzeppelin/contracts/token/ERC777/IERC777Recipient.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC777Recipient"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/node_modules/@openzeppelin/contracts/token/ERC777/IERC777Sender.sol": {
+      "lastModificationDate": 1608749040663,
+      "contentHash": "c59a76b8a23eaef6f259de54f672d59e",
+      "sourceName": "@openzeppelin/contracts/token/ERC777/IERC777Sender.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC777Sender"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1608749040662,
+      "contentHash": "e0a41531d159d3a32f84b7a3ecf9fabb",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/node_modules/@openzeppelin/contracts/utils/Address.sol": {
+      "lastModificationDate": 1615284913692,
+      "contentHash": "7aa46886ff5abe7515496208a5e2ce5a",
+      "sourceName": "@openzeppelin/contracts/utils/Address.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.2 <0.8.0"
+      ],
+      "artifacts": [
+        "Address"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/node_modules/@openzeppelin/contracts/introspection/IERC1820Registry.sol": {
+      "lastModificationDate": 1608749040662,
+      "contentHash": "820888c202bc007f6112423ee95b9cf0",
+      "sourceName": "@openzeppelin/contracts/introspection/IERC1820Registry.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC1820Registry"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/node_modules/@openzeppelin/contracts/utils/EnumerableSet.sol": {
+      "lastModificationDate": 1615284913695,
+      "contentHash": "db7b1afdb2c204e1e52100b79f0c847e",
+      "sourceName": "@openzeppelin/contracts/utils/EnumerableSet.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "EnumerableSet"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/KUDIToken.sol": {
+      "lastModificationDate": 1615284884482,
+      "contentHash": "5b735dc6eb227de1e8ba0dccaa301ac5",
+      "sourceName": "contracts/KUDIToken.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC777/ERC777.sol",
+        "@openzeppelin/contracts/access/AccessControl.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/math/SafeMath.sol"
+      ],
+      "versionPragmas": [
+        "^0.6.3"
+      ],
+      "artifacts": [
+        "KUDIToken"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/SimpleChequeOperator.sol": {
+      "lastModificationDate": 1611430470519,
+      "contentHash": "587e563b99cd24034651323c7a7ca46c",
+      "sourceName": "contracts/SimpleChequeOperator.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [],
+      "artifacts": []
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/EURUSD.sol": {
+      "lastModificationDate": 1615284884482,
+      "contentHash": "a5a23fb69ec26d5371f608cb2cb52147",
+      "sourceName": "contracts/EURUSD.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/math/SafeMath.sol",
+        "./interfaces/ICurrencyOracle.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.6.3"
+      ],
+      "artifacts": [
+        "EURUSD"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/interfaces/ICurrencyOracle.sol": {
+      "lastModificationDate": 1615269759450,
+      "contentHash": "17546befa9fa4c469288b173bc7bc844",
+      "sourceName": "contracts/interfaces/ICurrencyOracle.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.6.3"
+      ],
+      "artifacts": [
+        "ICurrencyOracle"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/TokenLockBox.sol": {
+      "lastModificationDate": 1615285443244,
+      "contentHash": "5fb551b3d64e91caddc649982c9efc7f",
+      "sourceName": "contracts/TokenLockBox.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "@openzeppelin/contracts/token/ERC777/IERC777Recipient.sol",
+        "@openzeppelin/contracts/introspection/IERC1820Registry.sol",
+        "@openzeppelin/contracts/math/SafeMath.sol",
+        "@openzeppelin/contracts/math/Math.sol",
+        "./interfaces/ICurrencyOracle.sol",
+        "./interfaces/IKUDIToken.sol",
+        "./interfaces/IEasyFiVault.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "./libraries/Math.sol"
+      ],
+      "versionPragmas": [
+        "^0.6.3"
+      ],
+      "artifacts": [
+        "TokenLockBox"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/node_modules/@openzeppelin/contracts/math/Math.sol": {
+      "lastModificationDate": 1608749040664,
+      "contentHash": "e5c844515b04deabacef7eb872abc384",
+      "sourceName": "@openzeppelin/contracts/math/Math.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "Math"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/interfaces/IKUDIToken.sol": {
+      "lastModificationDate": 1615263788814,
+      "contentHash": "b64cf67c03288883718634c44e25f2d6",
+      "sourceName": "contracts/interfaces/IKUDIToken.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC20x.sol"
+      ],
+      "versionPragmas": [
+        "^0.6.3"
+      ],
+      "artifacts": [
+        "IKUDIToken"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/interfaces/IEasyFiVault.sol": {
+      "lastModificationDate": 1615257770560,
+      "contentHash": "1c1a1e70a79d3e0dff5262b479f9a51f",
+      "sourceName": "contracts/interfaces/IEasyFiVault.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.6.3"
+      ],
+      "artifacts": [
+        "IEasyFiVault"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/interfaces/IERC20x.sol": {
+      "lastModificationDate": 1615263151310,
+      "contentHash": "504ceabaa47b377b98b5b5f043c92f7f",
+      "sourceName": "contracts/interfaces/IERC20x.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.6.3"
+      ],
+      "artifacts": [
+        "IERC20x"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/KUDIPriceOracleDAI.sol": {
+      "lastModificationDate": 1615284884482,
+      "contentHash": "a6b2ff6fddef12500fd65070f5107d22",
+      "sourceName": "contracts/KUDIPriceOracleDAI.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/math/SafeMath.sol",
+        "@openzeppelin/contracts/math/Math.sol",
+        "./interfaces/IAggregatorV3.sol",
+        "./interfaces/ICurrencyOracle.sol",
+        "./libraries/Math.sol"
+      ],
+      "versionPragmas": [
+        "^0.6.3"
+      ],
+      "artifacts": [
+        "KUDIPriceOracleDAI"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/interfaces/IAggregatorV3.sol": {
+      "lastModificationDate": 1615261065619,
+      "contentHash": "738d2357fbfef2d4488e9f2041d9e967",
+      "sourceName": "contracts/interfaces/IAggregatorV3.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.6.3"
+      ],
+      "artifacts": [
+        "AggregatorV3Interface"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/EURXOF.sol": {
+      "lastModificationDate": 1615284884482,
+      "contentHash": "5dda350860e5394a233c5b0f35c9a7b5",
+      "sourceName": "contracts/EURXOF.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/math/SafeMath.sol",
+        "./interfaces/ICurrencyOracle.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.6.3"
+      ],
+      "artifacts": [
+        "EURXOF"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/interfaces/IComptroller.sol": {
+      "lastModificationDate": 1615260052530,
+      "contentHash": "7ae345ca33d465181296ac9d58fa72ba",
+      "sourceName": "contracts/interfaces/IComptroller.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.6.3"
+      ],
+      "artifacts": [
+        "IComptroller"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/libraries/Math.sol": {
+      "lastModificationDate": 1615284884482,
+      "contentHash": "084e8148a11e3a6f70592edf6ce33efd",
+      "sourceName": "contracts/libraries/Math.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/math/SafeMath.sol"
+      ],
+      "versionPragmas": [
+        "^0.6.3"
+      ],
+      "artifacts": [
+        "KudiMath"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/libraries/ABDKMath64x64.sol": {
+      "lastModificationDate": 1615264713768,
+      "contentHash": "d41d8cd98f00b204e9800998ecf8427e",
+      "sourceName": "contracts/libraries/ABDKMath64x64.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [],
+      "artifacts": []
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/mocks/MockEasyFiVault.sol": {
+      "lastModificationDate": 1615267840918,
+      "contentHash": "1f29e5d2ab7dc522c389021f59745795",
+      "sourceName": "contracts/mocks/MockEasyFiVault.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IEasyFiVault.sol",
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.6.3"
+      ],
+      "artifacts": [
+        "MockEasyFiVault"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/mocks/MockToken.sol": {
+      "lastModificationDate": 1615284884482,
+      "contentHash": "28ed055ff98c153fc84874dcaafe2f53",
+      "sourceName": "contracts/mocks/MockToken.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "@openzeppelin/contracts/access/AccessControl.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/math/SafeMath.sol"
+      ],
+      "versionPragmas": [
+        "^0.6.3"
+      ],
+      "artifacts": [
+        "MockToken"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+      "lastModificationDate": 1615284913697,
+      "contentHash": "8065b340476f61365c076897199425f1",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../utils/Context.sol",
+        "./IERC20.sol",
+        "../../math/SafeMath.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "ERC20"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/mocks/MockTokenPriceFeed.sol": {
+      "lastModificationDate": 1615271529045,
+      "contentHash": "51c8073355a09fb47744ad80031ba423",
+      "sourceName": "contracts/mocks/MockTokenPriceFeed.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IAggregatorV3.sol"
+      ],
+      "versionPragmas": [
+        "^0.6.3"
+      ],
+      "artifacts": [
+        "MockTokenPriceFeed"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/contracts/mocks/MockTokenPriceOracle.sol": {
+      "lastModificationDate": 1615277775888,
+      "contentHash": "174e3a0ba7ef46ed4a1548731c78ec5f",
+      "sourceName": "contracts/mocks/MockTokenPriceOracle.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/ICurrencyOracle.sol"
+      ],
+      "versionPragmas": [
+        "^0.6.3"
+      ],
+      "artifacts": [
+        "MockTokenPriceOracle"
+      ]
+    },
+    "/Users/abschmidt/git/ekudi-eth-contract/node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "lastModificationDate": 1615284913693,
+      "contentHash": "2adbd82f6d055a4751566d4671512b03",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    }
+  }
+}
