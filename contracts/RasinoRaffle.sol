@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.3;
+pragma solidity ^0.6.8;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC777/IERC777Recipient.sol";
@@ -22,11 +22,12 @@ contract RasinoRaffle is Ownable {
 
     struct TicketHolderRecord { 
         uint round;
+        bool isValue;
         TicketHolderPosition[] record;
     }
     struct Round { 
         uint roundSupply;
-        bytes32 commit;
+        bytes commit;
         uint256 pricePerTicket;
         bool collected;
     }
@@ -36,17 +37,17 @@ contract RasinoRaffle is Ownable {
     using SafeMath for uint8;
     using Math for uint8;
 
-    IERC20private _token = IERC20(0xe3e8cc42da487d1116d26687856e9fb684817c52); // RASTA by default
+    IERC20 private _token = IERC20(0xE3e8cC42DA487d1116D26687856e9FB684817c52); // RASTA by default
     string public description;
     uint256 _devFee = 300; // Man, we devs gotta feed our children.
     address _devAddress;
     uint256 _ticketFee = 2200; // 22 percent goes back to the community
     uint pot = 0;
 
-    Round[] rounds = [];
+    Round[] rounds;
 
-    address[] tickets = [];
-    mapping(address => TicketHolderPosition) public userMemo;
+    address[] tickets;
+    mapping(address => TicketHolderRecord) public userMemo;
 
     /**
      * @dev Constructor
@@ -77,7 +78,7 @@ contract RasinoRaffle is Ownable {
         uint earnings = 0;
 
         for (uint256 index = 0; index < userMemo[account].record.length; index++) {
-            TicketHolderPosition position =  userMemo[account].record[index];
+            TicketHolderPosition memory position =  userMemo[account].record[index];
             uint ticketsBoughtAfterward = rounds[rid].roundSupply.sub(position.ticketNumber);
             uint feeForTicketHolders = ticketsBoughtAfterward.mul(rounds[rid].pricePerTicket).mul(_ticketFee).div(10000);
             uint earningsForThisTicketPosition = feeForTicketHolders.mul(position.ticketAmount).div(position.ticketNumber);
@@ -91,10 +92,10 @@ contract RasinoRaffle is Ownable {
      * @dev Buy Tickets
      */
     function buyTicket(uint256 amount) external {
-        require(rounds[userMemo[account].round].collected == false);
         uint roundId = rounds.length.sub(1);
+        require(rounds[roundId].collected == false);
         address from = _msgSender();
-        uint cost = amount.mul(pricePerTicket);
+        uint cost = amount.mul(rounds[roundId].pricePerTicket);
 
         /* Buy tickets */
         uint256 allowance = _token.allowance(from, address(this));
@@ -104,11 +105,12 @@ contract RasinoRaffle is Ownable {
         if(userMemo[from].isValue){
             if(userMemo[from].round != roundId){
                 _claimEarnings(from);
-                userMemo[from] = TicketHolderPosition(roundId, []);
+                userMemo[from].round = roundId;
             }
         }else{
-                userMemo[from] = TicketHolderPosition(roundId, []);
+                userMemo[from].round = roundId;
         }
+        userMemo[from].isValue = true;
         uint256 i = amount;
         while(i > 0){
             tickets.push(from);
@@ -126,10 +128,10 @@ contract RasinoRaffle is Ownable {
     /**
      * @dev Start Jackpot
      */
-    function startJackpot(bytes32 commit, uint256 price) external onlyOwner{
+    function startJackpot(bytes calldata commit, uint256 price) external onlyOwner{
         require(rounds[rounds.length.sub(1)].collected); // last round must have finished
 
-        tickets = [];
+        tickets = new address[](0);
         pot = 0;
         rounds.push(Round(0, commit, price, false));
         
@@ -138,9 +140,10 @@ contract RasinoRaffle is Ownable {
      * @dev Stop Jackpot
      */
     function stopJackpot(uint answer) external onlyOwner{
-        Round currentRound = rounds[rounds.length.sub(1)];
+        Round memory currentRound = rounds[rounds.length.sub(1)];
         require(currentRound.collected == false); // last round must have finished
-        require(abi.encodePacked(answer) == currentRound.commit); // Check that the hash matches
+        //require(uint(abi.encodePacked(answer)) == uint(currentRound.commit)); // Check that the hash matches
+        //TODO: somehow compare those commits. May need more research
 
         uint winner = answer.mod(tickets.length);
 
