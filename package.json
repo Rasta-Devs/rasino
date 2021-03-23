@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@nomiclabs/hardhat-ganache": "^2.0.0",
-    "@openzeppelin/contracts": "^3.3.0",
+    "@openzeppelin/contracts": "^4.0.0",
     "@openzeppelin/test-helpers": "^0.5.10",
     "openzeppelin-test-helpers": "^0.5.1"
   }

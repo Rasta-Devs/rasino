@@ -21,7 +21,7 @@ const LOCALHOST_PRIVATE_KEY = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5ef
 const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
   solidity: {
-    compilers: [{ version: "0.6.8", settings: {} }],
+    compilers: [{ version: "0.8.3", settings: {} }],
   },
   networks: {
     hardhat: {},

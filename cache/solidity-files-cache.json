@@ -1,151 +1,12 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\Users\\anschmidt\\git\\rasino\\contracts\\libraries\\ABDKMath64x64.sol": {
-      "lastModificationDate": 1616525223827,
-      "contentHash": "8c92a294168dc6549938d69c9e7bf733",
-      "sourceName": "contracts/libraries/ABDKMath64x64.sol",
-      "solcConfig": {
-        "version": "0.6.8",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.6.8"
-      ],
-      "artifacts": [
-        "ABDKMath64x64"
-      ]
-    },
-    "C:\\Users\\anschmidt\\git\\rasino\\contracts\\libraries\\Math.sol": {
-      "lastModificationDate": 1616524510010,
-      "contentHash": "5039c8172c077654d0def169558998ab",
-      "sourceName": "contracts/libraries/Math.sol",
-      "solcConfig": {
-        "version": "0.6.8",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/math/SafeMath.sol",
-        "@openzeppelin/contracts/math/Math.sol"
-      ],
-      "versionPragmas": [
-        "^0.6.3"
-      ],
-      "artifacts": [
-        "RastaMath"
-      ]
-    },
-    "C:\\Users\\anschmidt\\git\\rasino\\node_modules\\@openzeppelin\\contracts\\math\\SafeMath.sol": {
-      "lastModificationDate": 1616524905091,
-      "contentHash": "e03e12206057e809eb76c5f681170c32",
-      "sourceName": "@openzeppelin/contracts/math/SafeMath.sol",
-      "solcConfig": {
-        "version": "0.6.8",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.6.0 <0.8.0"
-      ],
-      "artifacts": [
-        "SafeMath"
-      ]
-    },
-    "C:\\Users\\anschmidt\\git\\rasino\\node_modules\\@openzeppelin\\contracts\\math\\Math.sol": {
-      "lastModificationDate": 1616524904928,
-      "contentHash": "e5c844515b04deabacef7eb872abc384",
-      "sourceName": "@openzeppelin/contracts/math/Math.sol",
-      "solcConfig": {
-        "version": "0.6.8",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.6.0 <0.8.0"
-      ],
-      "artifacts": [
-        "Math"
-      ]
-    },
     "C:\\Users\\anschmidt\\git\\rasino\\contracts\\RasinoRaffle.sol": {
-      "lastModificationDate": 1616527187856,
-      "contentHash": "1ac31e9b3fe9b094eea70b91ec8901fb",
+      "lastModificationDate": 1616537883496,
+      "contentHash": "5603530526f916ea4f1c81a356368b30",
       "sourceName": "contracts/RasinoRaffle.sol",
       "solcConfig": {
-        "version": "0.6.8",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -168,26 +29,23 @@
       },
       "imports": [
         "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-        "@openzeppelin/contracts/token/ERC777/IERC777Recipient.sol",
-        "@openzeppelin/contracts/introspection/IERC1820Registry.sol",
-        "@openzeppelin/contracts/math/SafeMath.sol",
-        "@openzeppelin/contracts/math/Math.sol",
-        "@openzeppelin/contracts/access/Ownable.sol",
-        "./libraries/Math.sol"
+        "@openzeppelin/contracts/utils/math/SafeMath.sol",
+        "@openzeppelin/contracts/utils/math/Math.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
       ],
       "versionPragmas": [
-        "^0.6.8"
+        "^0.8.0"
       ],
       "artifacts": [
         "RasinoRaffle"
       ]
     },
     "C:\\Users\\anschmidt\\git\\rasino\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\IERC20.sol": {
-      "lastModificationDate": 1616524904752,
-      "contentHash": "e0a41531d159d3a32f84b7a3ecf9fabb",
+      "lastModificationDate": 1616537798684,
+      "contentHash": "c7492a9ab60ba083d345f893d5e0f33c",
       "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {
-        "version": "0.6.8",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -210,18 +68,18 @@
       },
       "imports": [],
       "versionPragmas": [
-        ">=0.6.0 <0.8.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "IERC20"
       ]
     },
-    "C:\\Users\\anschmidt\\git\\rasino\\node_modules\\@openzeppelin\\contracts\\token\\ERC777\\IERC777Recipient.sol": {
-      "lastModificationDate": 1616524904853,
-      "contentHash": "c611b2349e7afbb03e4fd314878861e0",
-      "sourceName": "@openzeppelin/contracts/token/ERC777/IERC777Recipient.sol",
+    "C:\\Users\\anschmidt\\git\\rasino\\node_modules\\@openzeppelin\\contracts\\utils\\math\\SafeMath.sol": {
+      "lastModificationDate": 1616537798702,
+      "contentHash": "9f282272a197e5e800ef035117e86f2f",
+      "sourceName": "@openzeppelin/contracts/utils/math/SafeMath.sol",
       "solcConfig": {
-        "version": "0.6.8",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -244,18 +102,18 @@
       },
       "imports": [],
       "versionPragmas": [
-        ">=0.6.0 <0.8.0"
+        "^0.8.0"
       ],
       "artifacts": [
-        "IERC777Recipient"
+        "SafeMath"
       ]
     },
-    "C:\\Users\\anschmidt\\git\\rasino\\node_modules\\@openzeppelin\\contracts\\introspection\\IERC1820Registry.sol": {
-      "lastModificationDate": 1616524904698,
-      "contentHash": "820888c202bc007f6112423ee95b9cf0",
-      "sourceName": "@openzeppelin/contracts/introspection/IERC1820Registry.sol",
+    "C:\\Users\\anschmidt\\git\\rasino\\node_modules\\@openzeppelin\\contracts\\utils\\math\\Math.sol": {
+      "lastModificationDate": 1616537798692,
+      "contentHash": "21857a03e0374037ea2a2fc5e4ad9e17",
+      "sourceName": "@openzeppelin/contracts/utils/math/Math.sol",
       "solcConfig": {
-        "version": "0.6.8",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -278,18 +136,18 @@
       },
       "imports": [],
       "versionPragmas": [
-        ">=0.6.0 <0.8.0"
+        "^0.8.0"
       ],
       "artifacts": [
-        "IERC1820Registry"
+        "Math"
       ]
     },
     "C:\\Users\\anschmidt\\git\\rasino\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
-      "lastModificationDate": 1616524904953,
-      "contentHash": "6748815a5b45c4aeeda56819f41190e0",
+      "lastModificationDate": 1616537798695,
+      "contentHash": "17d9f40220b0ab370db2c77e7c92c4ef",
       "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
       "solcConfig": {
-        "version": "0.6.8",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -314,18 +172,18 @@
         "../utils/Context.sol"
       ],
       "versionPragmas": [
-        ">=0.6.0 <0.8.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "Ownable"
       ]
     },
     "C:\\Users\\anschmidt\\git\\rasino\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
-      "lastModificationDate": 1616524903814,
-      "contentHash": "2adbd82f6d055a4751566d4671512b03",
+      "lastModificationDate": 1616537798639,
+      "contentHash": "bc047f55d4e6dcc5a9c7ee096f530312",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {
-        "version": "0.6.8",
+        "version": "0.8.3",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -348,7 +206,7 @@
       },
       "imports": [],
       "versionPragmas": [
-        ">=0.6.0 <0.8.0"
+        "^0.8.0"
       ],
       "artifacts": [
         "Context"
