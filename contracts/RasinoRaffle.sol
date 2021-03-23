@@ -24,7 +24,6 @@ contract RasinoRaffle is Ownable {
     }
     struct Round { 
         uint roundSupply;
-        bytes commit;
         uint256 pricePerTicket;
         bool collected;
     }
@@ -53,6 +52,7 @@ contract RasinoRaffle is Ownable {
         _token = IERC20(token);
         description = _description;
         _devAddress = devAddress;
+        rounds.push(Round(0,1000000000000000000, false));
     }
 
     /**
@@ -125,12 +125,12 @@ contract RasinoRaffle is Ownable {
     /**
      * @dev Start Jackpot
      */
-    function startJackpot(bytes calldata commit, uint256 price) external onlyOwner{
+    function startJackpot(uint256 price) external onlyOwner{
         require(rounds[rounds.length.sub(1)].collected); // last round must have finished
 
         tickets = new address[](0);
         pot = 0;
-        rounds.push(Round(0, commit, price, false));
+        rounds.push(Round(0, price, false));
         
     }
     /**
