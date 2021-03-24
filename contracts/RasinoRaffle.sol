@@ -87,7 +87,7 @@ contract RasinoRaffle is Ownable {
         uint position =  userMemo[account].position;
         uint amount =  userMemo[account].amount;
         uint256 totalDividedByNumber = rounds[rid].roundSupply.div(position);
-        uint earningsForThisTicketPosition = RastaMath.log_2(totalDividedByNumber).mul(amount).mul(rounds[rid].pricePerTicket).mul(_ticketFee).div(10000).mul(0x4D104D427DE7FC000000000000000000) >> 128;
+        uint earningsForThisTicketPosition = RastaMath.log_2(totalDividedByNumber).mul(amount).mul(rounds[rid].pricePerTicket).mul(_ticketFee).div(10000).mul(0x4D104D427DE7FC000000000000000000) >> 128; //log2(total/number)*log2(10)*amount*pricePerTicket*22/100
         return earningsForThisTicketPosition;
     }
     function estimateEarnings() external view returns(uint){
