@@ -5,6 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/utils/math/Math.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "./libraries/Math.sol";
 
 
 /**
@@ -12,15 +13,12 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  * @dev A simple raffle for Rastas
  */
 contract RasinoRaffle is Ownable {
-    struct TicketHolderPosition {
-        uint ticketAmount;
-        uint ticketNumber;
-    }
 
     struct TicketHolderRecord { 
         uint round;
         bool isValue;
-        TicketHolderPosition[] record;
+        uint amount;
+        uint position;
     }
     struct Round { 
         uint roundSupply;
@@ -52,7 +50,6 @@ contract RasinoRaffle is Ownable {
         _token = IERC20(token);
         description = _description;
         _devAddress = devAddress;
-        rounds.push(Round(0,1000000000000000000, false));
     }
 
     /**
@@ -64,25 +61,39 @@ contract RasinoRaffle is Ownable {
     }
 
     /**
+     * @dev Claim earnings for sender
+     */
+    function claimEarnings() external {
+        address from = _msgSender();
+        _claimEarnings(from);
+    }
+    /**
      * @dev Claim earnings for ticket holders
      */
     function _claimEarnings(address account) internal {
+        uint earnings = _estimateEarnings(account);
+        require(_token.transfer(account, earnings));
+        delete userMemo[account];
+    }
+
+    function _estimateEarnings(address account) internal view returns(uint) {
+        
         require(userMemo[account].isValue);
         require(userMemo[account].round < rounds.length); // must be a past round
         require(rounds[userMemo[account].round].collected);
         
         uint rid = userMemo[account].round;
-        uint earnings = 0;
 
-        for (uint256 index = 0; index < userMemo[account].record.length; index++) {
-            TicketHolderPosition memory position =  userMemo[account].record[index];
-            uint ticketsBoughtAfterward = rounds[rid].roundSupply.sub(position.ticketNumber);
-            uint feeForTicketHolders = ticketsBoughtAfterward.mul(rounds[rid].pricePerTicket).mul(_ticketFee).div(10000);
-            uint earningsForThisTicketPosition = feeForTicketHolders.mul(position.ticketAmount).div(position.ticketNumber);
-            earnings = earnings.add(earningsForThisTicketPosition);
-        }
-        require(_token.transfer(account, earnings));
-        delete userMemo[account];
+        uint position =  userMemo[account].position;
+        uint amount =  userMemo[account].amount;
+        uint256 totalDividedByNumber = rounds[rid].roundSupply.div(position);
+        uint earningsForThisTicketPosition = RastaMath.log_2(totalDividedByNumber).mul(amount).mul(rounds[rid].pricePerTicket).mul(_ticketFee).div(10000).mul(0x4D104D427DE7FC000000000000000000) >> 128;
+        return earningsForThisTicketPosition;
+    }
+    function estimateEarnings() external view returns(uint){
+        address from = _msgSender();
+        return _estimateEarnings(from);
+
     }
 
     /**
@@ -92,7 +103,8 @@ contract RasinoRaffle is Ownable {
         uint roundId = rounds.length.sub(1);
         require(rounds[roundId].collected == false);
         address from = _msgSender();
-        uint cost = amount.mul(rounds[roundId].pricePerTicket);
+        uint pricePerTicket = rounds[roundId].pricePerTicket;
+        uint cost = amount.mul(pricePerTicket);
 
         /* Buy tickets */
         uint256 allowance = _token.allowance(from, address(this));
@@ -102,10 +114,11 @@ contract RasinoRaffle is Ownable {
         if(userMemo[from].isValue){
             if(userMemo[from].round != roundId){
                 _claimEarnings(from);
-                userMemo[from].round = roundId;
+                userMemo[from] = TicketHolderRecord(roundId, true, 0, 0);
             }
         }else{
                 userMemo[from].round = roundId;
+                userMemo[from] = TicketHolderRecord(roundId, true, 0, 0);
         }
         userMemo[from].isValue = true;
         uint256 i = amount;
@@ -113,12 +126,17 @@ contract RasinoRaffle is Ownable {
             tickets.push(from);
             i = i.sub(1);
         }
-        uint newPot = pot.add(amount.mul(uint256(10000).sub(_ticketFee).sub(_devFee)).div(10000));
-        uint devAmount = amount.mul(_devFee).div(10000);
+        uint newPot = pot.add(cost.mul(uint256(10000).sub(_ticketFee).sub(_devFee)).div(10000));
+        uint devAmount = cost.mul(_devFee).div(10000);
         require(_token.transfer(_devAddress, devAmount));
 
+        rounds[roundId].roundSupply = rounds[roundId].roundSupply.add(amount);
         pot = newPot;
-        userMemo[from].record.push(TicketHolderPosition(amount, tickets.length));
+        uint totalPosition = tickets.length.add(userMemo[from].position);
+        uint weightedCurrent = userMemo[from].amount.mul(userMemo[from].position);
+        uint weightedNew = amount.mul(tickets.length);
+        userMemo[from].position = weightedCurrent.add(weightedNew).div(totalPosition).add(1).min(tickets.length);
+        userMemo[from].amount = userMemo[from].amount.add(amount);
 
     }
 
@@ -126,7 +144,7 @@ contract RasinoRaffle is Ownable {
      * @dev Start Jackpot
      */
     function startJackpot(uint256 price) external onlyOwner{
-        require(rounds[rounds.length.sub(1)].collected); // last round must have finished
+        require(rounds.length == 0 || rounds[rounds.length.sub(1)].collected); // last round must have finished
 
         tickets = new address[](0);
         pot = 0;
@@ -147,5 +165,18 @@ contract RasinoRaffle is Ownable {
         require(_token.transfer(tickets[winner], pot));
         rounds[rounds.length.sub(1)].collected = true;
     }
-
+    
+    /**
+     * @dev Current Pot Amount
+     */
+    function currentPot() external onlyOwner  view returns(int){
+        if(rounds.length == 0){
+            return -1;
+        }
+        Round memory currentRound = rounds[rounds.length.sub(1)];
+        if(currentRound.collected){
+            return -1;
+        }
+        return int(pot);
+    }
 }
