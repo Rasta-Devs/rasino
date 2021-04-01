@@ -48,7 +48,7 @@ contract RasinoRaffle is Ownable {
     /**
      * @dev Constructor
      */
-    constructor (address token, address devAddress, address trustFundAddress, string memory _description) public {
+    constructor (address token, address devAddress, address trustFundAddress, string memory _description) {
         _token = IERC20(token);
         description = _description;
         _devAddress = devAddress;
@@ -106,6 +106,9 @@ contract RasinoRaffle is Ownable {
     }
     function estimateEarnings() external view returns(uint){
         address from = _msgSender();
+        if(userMemo[from].isValue == false){
+            return 0;
+        }
 
         return _estimateEarnings(from);
 
@@ -177,14 +180,14 @@ contract RasinoRaffle is Ownable {
      * @dev Stop Jackpot
      */
     function stopJackpot(uint answer) external onlyOwner{
-        Round memory currentRound = rounds[rounds.length.sub(1)];
-        require(currentRound.collected == false); // last round must have finished
+        Round memory curRound = rounds[rounds.length.sub(1)];
+        require(curRound.collected == false); // last round must have finished
         //require(uint(abi.encodePacked(answer)) == uint(currentRound.commit)); // Check that the hash matches
         //TODO: somehow compare those commits. May need more research, or better yet get a random number from a chain link oracle
 
         uint winner = answer.mod(tickets.length);
 
-        require(_token.transfer(tickets[winner], currentRound.pot));
+        require(_token.transfer(tickets[winner], curRound.pot));
         rounds[rounds.length.sub(1)].collected = true;
     }
     
@@ -195,11 +198,11 @@ contract RasinoRaffle is Ownable {
         if(rounds.length == 0){
             return -1;
         }
-        Round memory currentRound = rounds[rounds.length.sub(1)];
-        if(currentRound.collected){
+        Round memory curRound = rounds[rounds.length.sub(1)];
+        if(curRound.collected){
             return -1;
         }
-        return int(currentRound.pot);
+        return int(curRound.pot);
     }
     /**
      * @dev Current Round
