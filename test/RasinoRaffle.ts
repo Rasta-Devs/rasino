@@ -36,7 +36,7 @@ describe("RasinoRaffle", () => {
     )) as RasinoRaffle__factory;
     MockToken = await mockTokenFactory.deploy(STARTING_AMOUNT, signers[0].address);
     await MockToken.deployed();
-    RasinoRaffle = await raffleFactory.deploy(MockToken.address, signers[0].address, "Sample Description");
+    RasinoRaffle = await raffleFactory.deploy(MockToken.address, signers[0].address, signers[3].address, "Sample Description");
     await RasinoRaffle.deployed();
 
 

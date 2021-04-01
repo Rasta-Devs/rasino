@@ -24,6 +24,7 @@ contract RasinoRaffle is Ownable {
         uint roundSupply;
         uint256 pricePerTicket;
         bool collected;
+        uint pot;
     }
 
     using SafeMath for uint256;
@@ -34,9 +35,10 @@ contract RasinoRaffle is Ownable {
     IERC20 private _token = IERC20(0xE3e8cC42DA487d1116D26687856e9FB684817c52); // RASTA by default
     string public description;
     uint256 _devFee = 300; // Man, we devs gotta feed our children.
+    uint256 _trustFundFee = 500; // For the community, owned by the community
     address _devAddress;
+    address _trustFundAddress;
     uint256 _ticketFee = 2200; // 22 percent goes back to the community
-    uint pot = 0;
 
     Round[] rounds;
 
@@ -46,42 +48,50 @@ contract RasinoRaffle is Ownable {
     /**
      * @dev Constructor
      */
-    constructor (address token, address devAddress, string memory _description) public {
+    constructor (address token, address devAddress, address trustFundAddress, string memory _description) {
         _token = IERC20(token);
         description = _description;
         _devAddress = devAddress;
+        _trustFundAddress = trustFundAddress;
     }
 
     /**
      * @dev Sets both dev and ticket fees
      */
-    function setFees(uint256 ticketFee, uint256 devFee) external onlyOwner{
+    function setFees(uint256 ticketFee, uint256 devFee, uint256 trustFundFee) external onlyOwner{
         _ticketFee = ticketFee;
         _devFee = devFee;
+        _trustFundFee = trustFundFee;
     }
 
+    /**
+     * @dev Sets the addresses in contract (by owner only)
+     */
+    function setAddresses(address devAddress, address trustFundAddress) external onlyOwner{
+        _devAddress = devAddress;
+        _trustFundAddress = trustFundAddress;
+    }
     /**
      * @dev Claim earnings for sender
      */
     function claimEarnings() external {
         address from = _msgSender();
+        require(canCollectEarnings());
         _claimEarnings(from);
     }
     /**
      * @dev Claim earnings for ticket holders
      */
     function _claimEarnings(address account) internal {
+        require(userMemo[account].isValue);
+        require(userMemo[account].round < rounds.length); // must be a past round
+        require(rounds[userMemo[account].round].collected);
         uint earnings = _estimateEarnings(account);
         require(_token.transfer(account, earnings));
         delete userMemo[account];
     }
 
     function _estimateEarnings(address account) internal view returns(uint) {
-        
-        require(userMemo[account].isValue);
-        require(userMemo[account].round < rounds.length); // must be a past round
-        require(rounds[userMemo[account].round].collected);
-        
         uint rid = userMemo[account].round;
 
         uint position =  userMemo[account].position;
@@ -90,8 +100,16 @@ contract RasinoRaffle is Ownable {
         uint earningsForThisTicketPosition = RastaMath.log_2(totalDividedByNumber).mul(amount).mul(rounds[rid].pricePerTicket).mul(_ticketFee).div(10000).mul(0x4D104D427DE7FC000000000000000000) >> 128; //log2(total/number)*log2(10)*amount*pricePerTicket*22/100
         return earningsForThisTicketPosition;
     }
+    function canCollectEarnings() public view returns(bool){
+        address account = _msgSender();
+        return userMemo[account].isValue && userMemo[account].round < rounds.length && rounds[userMemo[account].round].collected;
+    }
     function estimateEarnings() external view returns(uint){
         address from = _msgSender();
+        if(userMemo[from].isValue == false){
+            return 0;
+        }
+
         return _estimateEarnings(from);
 
     }
@@ -111,6 +129,7 @@ contract RasinoRaffle is Ownable {
         require(allowance >= cost, "Check the token allowance");
         require(_token.transferFrom(from, address(this), cost));
 
+        // Check if there are current earnings for user, if so... claim them!
         if(userMemo[from].isValue){
             if(userMemo[from].round != roundId){
                 _claimEarnings(from);
@@ -121,23 +140,30 @@ contract RasinoRaffle is Ownable {
                 userMemo[from] = TicketHolderRecord(roundId, true, 0, 0);
         }
         userMemo[from].isValue = true;
+
+        // Add record of ticket purchase
         uint256 i = amount;
         while(i > 0){
             tickets.push(from);
             i = i.sub(1);
         }
-        uint newPot = pot.add(cost.mul(uint256(10000).sub(_ticketFee).sub(_devFee)).div(10000));
+
+        // Add amounts to pot and dispurse initial fees
+        uint newPot = rounds[roundId].pot.add(cost.mul(uint256(10000).sub(_ticketFee).sub(_devFee).sub(_trustFundFee)).div(10000));
         uint devAmount = cost.mul(_devFee).div(10000);
+        uint trustFundAmount = cost.mul(_trustFundFee).div(10000);
         require(_token.transfer(_devAddress, devAmount));
+        require(_token.transfer(_trustFundAddress, trustFundAmount));
 
         rounds[roundId].roundSupply = rounds[roundId].roundSupply.add(amount);
-        pot = newPot;
+        rounds[roundId].pot = newPot;
+
+        // Calculate weighted average for user's position record
         uint totalPosition = tickets.length.add(userMemo[from].position);
         uint weightedCurrent = userMemo[from].amount.mul(userMemo[from].position);
         uint weightedNew = amount.mul(tickets.length);
         userMemo[from].position = weightedCurrent.add(weightedNew).div(totalPosition).add(1).min(tickets.length);
         userMemo[from].amount = userMemo[from].amount.add(amount);
-
     }
 
     /**
@@ -147,36 +173,42 @@ contract RasinoRaffle is Ownable {
         require(rounds.length == 0 || rounds[rounds.length.sub(1)].collected); // last round must have finished
 
         tickets = new address[](0);
-        pot = 0;
-        rounds.push(Round(0, price, false));
+        rounds.push(Round(0, price, false, 0));
         
     }
     /**
      * @dev Stop Jackpot
      */
     function stopJackpot(uint answer) external onlyOwner{
-        Round memory currentRound = rounds[rounds.length.sub(1)];
-        require(currentRound.collected == false); // last round must have finished
+        Round memory curRound = rounds[rounds.length.sub(1)];
+        require(curRound.collected == false); // last round must have finished
         //require(uint(abi.encodePacked(answer)) == uint(currentRound.commit)); // Check that the hash matches
-        //TODO: somehow compare those commits. May need more research
+        //TODO: somehow compare those commits. May need more research, or better yet get a random number from a chain link oracle
 
         uint winner = answer.mod(tickets.length);
 
-        require(_token.transfer(tickets[winner], pot));
+        require(_token.transfer(tickets[winner], curRound.pot));
         rounds[rounds.length.sub(1)].collected = true;
     }
     
     /**
      * @dev Current Pot Amount
      */
-    function currentPot() external onlyOwner  view returns(int){
+    function currentPot() external view returns(int){
         if(rounds.length == 0){
             return -1;
         }
-        Round memory currentRound = rounds[rounds.length.sub(1)];
-        if(currentRound.collected){
+        Round memory curRound = rounds[rounds.length.sub(1)];
+        if(curRound.collected){
             return -1;
         }
-        return int(pot);
+        return int(curRound.pot);
     }
+    /**
+     * @dev Current Round
+     */
+    function currentRound() external view returns(Round memory){
+        return rounds[rounds.length.sub(1)];
+    }
+
 }
