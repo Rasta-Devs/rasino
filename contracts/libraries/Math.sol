@@ -1,40 +1,36 @@
 // SPDX-License-Identifier: MIT
 /*
- * Rasta Math Smart Contract Library.  Copyright © 2021 by RastaFinance
+ * Kudi Math Smart Contract Library.  Copyright © 2021 by Nemcrunchers
+ * Author: Andrew Schmidt <andrew@nemcrunchers.dev>
  */
-pragma solidity ^0.6.3;
+pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/math/SafeMath.sol";
-import "@openzeppelin/contracts/math/Math.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
 
 library RastaMath {
   using SafeMath for uint256;
-  using Math for uint;
 
   /**
-   * Calculate exponential of base 10
+   * Calculate binary logarithm of x.  Revert if x <= 0.
    *
-   * @param x unsigned 256 bit integer
-   * @param decimals unsigned 256 bit integer as logarithmic power
-   * @return unsigned 256 bit integer
+   * @param x signed 64.64-bit fixed point number
+   * @return signed 64.64-bit fixed point number
    */
-  function exp10 (uint256 x, uint8 decimals) internal pure returns (uint256) {
-      return x.mul(uint256(10) ** uint256(decimals)); // 10**255 is the max value... this should be less than max value for uint256
-  }
-  /**
-   * Calculate the Average while rounding up
-   *
-   * @param x unsigned integer
-   * @param y unsigned integer
-   * @return unsigned integer
-   */
-  function averageUp (uint x, uint y ) internal pure returns (uint){
+  function log_2 (uint256 x) internal pure returns (uint256) {
+    uint256 n = 0;
 
-    uint256 average = x.average(y);
-    if(average.mul(2) != x.add(y)){ // average rounded down to zero so round up
-      return average.add(1);
-    }
-    return average;
+    if (x > 2**255) { x >>= 256; n += 256; }
+    if (x >= 2**128) { x >>= 128; n += 128; }
+    if (x >= 2**64) { x >>= 64; n += 64; }
+    if (x >= 2**32) { x >>= 32; n += 32; }
+    if (x >= 2**16) { x >>= 16; n += 16; }
+    if (x >= 2**8) { x >>= 8; n += 8; }
+    if (x >= 2**4) { x >>= 4; n += 4; }
+    if (x >= 2**2) { x >>= 2; n += 2; }
+    if (x >= 2**1) { /* x >>= 1; */ n += 1; }
+
+    return n;
   }
+
 }
